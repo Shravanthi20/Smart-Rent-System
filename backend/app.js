@@ -57,8 +57,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB Connection with better error handling
+const mongoUri = process.env.MONGO_URL || process.env.MONGODB_URI;
+
+if (!mongoUri) {
+  console.error("Critical Error: MongoDB connection string is missing!");
+  console.error("Please set MONGO_URL or MONGODB_URI in your environment variables.");
+  process.exit(1);
+}
+
 mongoose
-  .connect(process.env.MONGO_URL || process.env.MONGODB_URI)
+  .connect(mongoUri)
   .then(() => {
     console.log("MongoDB Connected Successfully");
   })
