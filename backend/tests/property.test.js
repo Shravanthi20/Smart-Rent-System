@@ -8,9 +8,9 @@ describe("Property API", () => {
         await mongoose.connection.close();
     });
 
-    it("GET /api/properties/test should return 200 and an array", async () => {
-        const res = await request(app).get("/api/properties/test");
+    it("GET /api/properties should return 200 and properties array", async () => {
+        const res = await request(app).get("/api/properties");
         expect(res.statusCode).toBe(200);
-        expect(Array.isArray(res.body)).toBe(true);
+        expect(Array.isArray(res.body.properties)).toBe(true);
     });
 });
