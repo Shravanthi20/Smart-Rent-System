@@ -57,7 +57,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB Connection with better error handling
-const mongoUri = process.env.MONGO_URL || process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/smart-rent-system";
+const mongoUri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/smart-rent-system";
 
 if (!mongoUri) {
   console.error("Critical Error: MongoDB connection string is missing!");
